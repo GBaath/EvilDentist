@@ -11,7 +11,8 @@ public class SceneHandler : MonoBehaviour
     }
     public void SetScene(string scene)
     {
-        SceneManager.LoadSceneAsync(scene);
+        Debug.Log("SETSCENE");
+        SceneManager.LoadScene(scene);
     }
 
     public void Quit()

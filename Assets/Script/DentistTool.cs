@@ -20,22 +20,29 @@ public class DentistTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("HitLeft")|| Input.GetButtonDown("HitRight"))
+        if (!GameManager.instance.paused)
         {
-            anim.SetTrigger("Hit");
-            if (Input.GetButtonDown(nextInputButton))
+            if (Input.GetButtonDown("HitLeft")|| Input.GetButtonDown("HitRight"))
             {
-                //nice
-                if (activeTooth)
+                anim.SetTrigger("Hit");
+                if (Input.GetButtonDown(nextInputButton))
                 {
-                    if (activeTooth.canBeSmashed)
+                    //nice
+                    if (activeTooth)
                     {
-                        GameManager.instance.mouthManager.toothParticles.transform.position = transform.position;
-                        GameManager.instance.mouthManager.toothParticles.GetComponent<ParticleSystem>().Play();
-                        GameManager.instance.SetNewButtonPrompt();
-                        activeTooth.health--;
-                        GameManager.instance.score++;
-                        gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.tooth,.2f);
+                        if (activeTooth.canBeSmashed)
+                        {
+                            GameManager.instance.mouthManager.toothParticles.transform.position = transform.position;
+                            GameManager.instance.mouthManager.toothParticles.GetComponent<ParticleSystem>().Play();
+                            GameManager.instance.SetNewButtonPrompt();
+                            activeTooth.health--;
+                            GameManager.instance.score++;
+                            gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.tooth,.2f);
+                        }
+                        else
+                        {
+                            Blood();
+                        }
                     }
                     else
                     {
@@ -44,15 +51,11 @@ public class DentistTool : MonoBehaviour
                 }
                 else
                 {
+                    //death instantiate blood
                     Blood();
                 }
-            }
-            else
-            {
-                //death instantiate blood
-                Blood();
-            }
 
+            }
         }
     }
     void Blood()

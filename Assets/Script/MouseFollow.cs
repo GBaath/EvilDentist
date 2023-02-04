@@ -19,21 +19,24 @@ public class MouseFollow : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyUp(KeyCode.Space))
-            TogglePreciscionMove();
-
-        if ((Input.mousePosition).x > Screen.width / 2)
+        if (!GameManager.instance.paused)
         {
-            hands.flipX = true;
-        }
-        else
-            hands.flipX = false;
+            if (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyUp(KeyCode.Space))
+                TogglePreciscionMove();
 
-        //sway
-        transform.position += (Vector3)Random.insideUnitCircle.normalized*Time.deltaTime*swayScale;
+            if ((Input.mousePosition).x > Screen.width / 2)
+            {
+                hands.flipX = true;
+            }
+            else
+                hands.flipX = false;
+
+            //sway
+            transform.position += (Vector3)Random.insideUnitCircle.normalized*Time.deltaTime*swayScale;
         
-        transform.position = Vector3.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), moveSens * Time.deltaTime); //Vector3.Lerp(transform.position,transform.position+move,swaySpeed*Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), moveSens * Time.deltaTime); //Vector3.Lerp(transform.position,transform.position+move,swaySpeed*Time.deltaTime);
 
+        }
 
     }
     public void TogglePreciscionMove()

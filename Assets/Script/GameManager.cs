@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     private int time = 90;
     public int patientCount;
 
+    public bool paused;
+
     private int _score;
     public int score
     {
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Score: "+ value.ToString();
         }
     }
-    private float _timeLeft = 60;
+    private float _timeLeft = 90;
     public float timeLeft
     {
         get
@@ -60,11 +62,14 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        timeLeft -= Time.deltaTime;
-        if (timeLeft <= 0)
+        if (!paused)
         {
-            timeLeft = 0;
-            GameOver();
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0)
+            {
+                timeLeft = 0;
+                GameOver();
+            }
         }
     }
     public void GameOver()

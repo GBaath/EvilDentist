@@ -34,7 +34,7 @@ public class AnimatedClickableObject : MonoBehaviour, IPointerEnterHandler, IPoi
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-
+        mouseClick.Invoke();
     }
     private void Update()
     {
