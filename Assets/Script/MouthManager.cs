@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MouthManager : MonoBehaviour
 {
+    [SerializeField] public GameObject toothParticles;
     [SerializeField] private List<Tooth> teeth;
     private List<Tooth> teethToRemove = new List<Tooth>();
 
-    private void Start()
+    public void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
+            transform.GetChild(i).gameObject.SetActive(true);
             Tooth tooth = transform.GetChild(i).GetComponent<Tooth>();
             if (tooth)
                 teeth.Add(tooth);
@@ -18,7 +20,7 @@ public class MouthManager : MonoBehaviour
         //random amount
         foreach (var tooth in teeth)
         {
-            if (Random.Range(0, 5) == 0)
+            if (Random.Range(0, 3) == 0)
             {
                 //teeth.Remove(tooth);
                 teethToRemove.Add(tooth);
@@ -37,5 +39,10 @@ public class MouthManager : MonoBehaviour
     {
         if(teeth.Contains(tooth))
             teeth.Remove(tooth);
+
+        if(teeth.Count <= 0)
+        {
+            GameManager.instance.NextPatient();
+        }
     }
 }

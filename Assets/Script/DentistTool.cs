@@ -19,9 +19,11 @@ public class DentistTool : MonoBehaviour
                 {
                     if (activeTooth.canBeSmashed)
                     {
+                        GameManager.instance.mouthManager.toothParticles.transform.position = transform.position;
+                        GameManager.instance.mouthManager.toothParticles.GetComponent<ParticleSystem>().Play();
+                        GameManager.instance.SetNewButtonPrompt();
                         activeTooth.health--;
                     }
-                    GameManager.instance.SetNewButtonPrompt();
                 }
             }
             else

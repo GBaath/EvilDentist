@@ -10,10 +10,13 @@ public class GameManager : MonoBehaviour
     private const string hitRightBtn = "HitRight";
     private const string hitLeftBtn = "HitLeft";
 
+    public GameObject patient;
     public GameObject buttonPrompt;
     public TextMeshProUGUI inputText,scoreText,timeText;
-
     public DentistTool tool;
+    public MouthManager mouthManager;
+
+    public int patientCount;
 
     private int _score;
     public int score
@@ -81,10 +84,24 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveButtonPrompt()
     {
+        Debug.Log("remove");
         buttonPrompt.SetActive(false); //anim here
 
         inputText.text = null;
         tool.activeTooth = null;
+    }
+    public void NextPatient()
+    {
+        //add score
+        patientCount++;
+        score += 10;
+        timeLeft += 5;
+        //anims 
+        //spawn new
+        //patient.transform.position out of screen and move in
+        patient.GetComponentInChildren<MouthManager>().Start();
+
+
     }
 
 }
