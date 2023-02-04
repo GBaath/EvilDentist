@@ -66,8 +66,8 @@ public class Tooth : MonoBehaviour
     }
     private void OnDestroy()
     {
-        GameManager.instance.RemoveButtonPrompt();
-        transform.parent.TryGetComponent<MouthManager>(out MouthManager mouth);
-        mouth.RemoveTooth(this);
+        //GameManager.instance.RemoveButtonPrompt();
+        //transform.parent.TryGetComponent<MouthManager>(out MouthManager mouth);
+        //mouth.RemoveTooth(this);
     }
 }

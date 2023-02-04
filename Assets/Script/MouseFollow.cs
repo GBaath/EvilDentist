@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseFollow : MonoBehaviour
 {
-    [SerializeField] float moveSens = 5;
+    [SerializeField] public float moveSens = 5;
     [SerializeField] SpriteRenderer hands;
 
     [SerializeField]bool preciscionMove;

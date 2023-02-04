@@ -8,6 +8,8 @@ public class MouthManager : MonoBehaviour
     [SerializeField] private List<Tooth> teeth;
     private List<Tooth> teethToRemove = new List<Tooth>();
 
+    public Animator patientAnim;
+
     public void Start()
     {
         for (int i = 0; i < transform.childCount; i++)

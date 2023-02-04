@@ -15,7 +15,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI inputText,scoreText,timeText;
     public DentistTool tool;
     public MouthManager mouthManager;
+    public SoundPlayer soundPlayer;
 
+    public GameObject gameOverCanvas;
+    public GameObject pauseMenuCanvas;
+
+    private int time = 90;
     public int patientCount;
 
     private int _score;
@@ -51,14 +56,29 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Application.targetFrameRate = 60;
     }
     private void Update()
     {
         timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0)
+        {
+            timeLeft = 0;
+            GameOver();
+        }
     }
     public void GameOver()
     {
+       // tool.GetComponent<MouseFollow>().moveSens = 0;
+        //tool.GetComponentInChildren<MouseFollow>().moveSens = 0;
+        foreach (var comp in tool.GetComponentsInChildren<MouseFollow>())
+        {
+            comp.moveSens = 0;
+        }
+        tool.enabled = false;
 
+        gameOverCanvas.SetActive(true);
+        pauseMenuCanvas.SetActive(false);
     }
 
     public void SetNewButtonPrompt()
@@ -84,7 +104,6 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveButtonPrompt()
     {
-        Debug.Log("remove");
         buttonPrompt.SetActive(false); //anim here
 
         inputText.text = null;
@@ -95,12 +114,13 @@ public class GameManager : MonoBehaviour
         //add score
         patientCount++;
         score += 10;
-        timeLeft += 5;
+        timeLeft = time-5;
+        time -= 5;
         //anims 
         //spawn new
         //patient.transform.position out of screen and move in
-        patient.GetComponentInChildren<MouthManager>().Start();
-
+        patient.GetComponentInChildren<MouthManager>().Invoke("Start",1f);
+        mouthManager.patientAnim.SetTrigger("Exit");
 
     }
 

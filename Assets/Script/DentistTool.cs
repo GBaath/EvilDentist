@@ -9,6 +9,14 @@ public class DentistTool : MonoBehaviour
     [SerializeField] GameObject bloodObject;
 
 
+    private GameManager gm;
+
+    private void Start()
+    {
+        gm = GameManager.instance;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +35,7 @@ public class DentistTool : MonoBehaviour
                         GameManager.instance.SetNewButtonPrompt();
                         activeTooth.health--;
                         GameManager.instance.score++;
+                        gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.tooth,.2f);
                     }
                     else
                     {
@@ -52,6 +61,9 @@ public class DentistTool : MonoBehaviour
         //TODO only if on acceptable area
             var blood = Instantiate(bloodObject,transform.position,Quaternion.identity);
             blood.transform.eulerAngles = new Vector3(Random.Range(-180f, 0),90,90);
+        gm.score--;
+        gm.timeLeft--;
+        //gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.gore,.2f);
 
     }
 }
