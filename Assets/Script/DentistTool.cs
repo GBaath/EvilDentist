@@ -22,7 +22,7 @@ public class DentistTool : MonoBehaviour
     {
         if (!GameManager.instance.paused)
         {
-            if (Input.GetButtonDown("HitLeft")|| Input.GetButtonDown("HitRight"))
+            if (Input.GetButtonDown("HitLeft")|| Input.GetButtonDown("HitRight") || Input.GetButtonDown("HitUp") || Input.GetButtonDown("HitDown"))
             {
                 anim.SetTrigger("Hit");
                 if (Input.GetButtonDown(nextInputButton))
@@ -62,8 +62,10 @@ public class DentistTool : MonoBehaviour
     {
 
         //TODO only if on acceptable area
-            var blood = Instantiate(bloodObject,transform.position,Quaternion.identity);
-            blood.transform.eulerAngles = new Vector3(Random.Range(-180f, 0),90,90);
+        var blood = Instantiate(bloodObject,transform.position,Quaternion.identity);
+        blood.transform.parent = gm.patient.transform;
+        gm.blood.Add(blood);
+        blood.transform.eulerAngles = new Vector3(Random.Range(-180f, 0),90,90);
         gm.score--;
         gm.timeLeft--;
         //gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.gore,.2f);
