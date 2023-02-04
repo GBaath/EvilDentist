@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tooth : MonoBehaviour
 {
+    private SpriteRenderer sprite;
     private int _health = 5;
     public int health
     {
@@ -14,6 +15,7 @@ public class Tooth : MonoBehaviour
         set
         {
             _health = value;
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z+Random.Range(-30,30));
             if (value <= 0)
             {
                 GameManager.instance.RemoveButtonPrompt();
@@ -21,6 +23,7 @@ public class Tooth : MonoBehaviour
                 mouth.RemoveTooth(this);
                 _health = 5;
                 gameObject.SetActive(false);
+                GameManager.instance.score+=2;
             }
                 //Destroy(gameObject);
         }
@@ -30,7 +33,11 @@ public class Tooth : MonoBehaviour
 
 
 
-
+    private void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.color = new Color(0.9f, 0.9f, 0.9f);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,6 +50,7 @@ public class Tooth : MonoBehaviour
             //set nextbutton
             GameManager.instance.SetNewButtonPrompt();
             GameManager.instance.tool.activeTooth = this;
+            sprite.color = Color.white;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -53,6 +61,7 @@ public class Tooth : MonoBehaviour
             canBeSmashed = false;
             GameManager.instance.RemoveButtonPrompt();
             GameManager.instance.tool.activeTooth = null;
+            sprite.color = new Color(0.9f, 0.9f, 0.9f);
         }
     }
     private void OnDestroy()

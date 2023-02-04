@@ -43,6 +43,7 @@ public class MouthManager : MonoBehaviour
         if(teeth.Count <= 0)
         {
             GameManager.instance.NextPatient();
+            GameManager.instance.score += 10;
         }
     }
 }

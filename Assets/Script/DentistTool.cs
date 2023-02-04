@@ -5,6 +5,8 @@ public class DentistTool : MonoBehaviour
 {
     public string nextInputButton = "HitLeft";
     public Tooth activeTooth;
+    [SerializeField] Animator anim;
+    [SerializeField] GameObject bloodObject;
 
 
     // Update is called once per frame
@@ -12,6 +14,7 @@ public class DentistTool : MonoBehaviour
     {
         if (Input.GetButtonDown("HitLeft")|| Input.GetButtonDown("HitRight"))
         {
+            anim.SetTrigger("Hit");
             if (Input.GetButtonDown(nextInputButton))
             {
                 //nice
@@ -23,14 +26,32 @@ public class DentistTool : MonoBehaviour
                         GameManager.instance.mouthManager.toothParticles.GetComponent<ParticleSystem>().Play();
                         GameManager.instance.SetNewButtonPrompt();
                         activeTooth.health--;
+                        GameManager.instance.score++;
                     }
+                    else
+                    {
+                        Blood();
+                    }
+                }
+                else
+                {
+                    Blood();
                 }
             }
             else
             {
-                //death
+                //death instantiate blood
+                Blood();
             }
 
         }
+    }
+    void Blood()
+    {
+
+        //TODO only if on acceptable area
+            var blood = Instantiate(bloodObject,transform.position,Quaternion.identity);
+            blood.transform.eulerAngles = new Vector3(Random.Range(-180f, 0),90,90);
+
     }
 }

@@ -22,7 +22,7 @@ public class MouseFollow : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyUp(KeyCode.Space))
             TogglePreciscionMove();
 
-        if (Camera.main.WorldToScreenPoint(transform.position).x > Screen.width / 2)
+        if ((Input.mousePosition).x > Screen.width / 2)
         {
             hands.flipX = true;
         }
@@ -41,12 +41,12 @@ public class MouseFollow : MonoBehaviour
         if (swayScale == 1)
         {
             swayScale = ogSwayScale;
-            moveSens *= 3;
+            moveSens *= 10;
         }
         else
         {
             swayScale = 1;
-            moveSens /= 3;
+            moveSens /= 10;
         }
     }
 }
