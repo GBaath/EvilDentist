@@ -15,7 +15,14 @@ public class Tooth : MonoBehaviour
         {
             _health = value;
             if (value <= 0)
-                Destroy(gameObject);
+            {
+                GameManager.instance.RemoveButtonPrompt();
+                transform.parent.TryGetComponent<MouthManager>(out MouthManager mouth);
+                mouth.RemoveTooth(this);
+                _health = 5;
+                gameObject.SetActive(false);
+            }
+                //Destroy(gameObject);
         }
     }
 
