@@ -17,7 +17,10 @@ public class MouthManager : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(true);
             Tooth tooth = transform.GetChild(i).GetComponent<Tooth>();
             if (tooth)
+            {
+                tooth.transform.rotation = Quaternion.identity;
                 teeth.Add(tooth);
+            }
         }
         //random amount
         foreach (var tooth in teeth)

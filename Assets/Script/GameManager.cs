@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     private const string hitRightBtn = "HitRight";
     private const string hitLeftBtn = "HitLeft";
+    private const string hitUpBtn = "HitUp";
+    private const string hitDownBtn = "HitDown";
 
     public GameObject patient;
     public GameObject buttonPrompt;
@@ -20,10 +22,15 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverCanvas;
     public GameObject pauseMenuCanvas;
 
+
+    [HideInInspector] public List<GameObject> blood =  new List<GameObject>();
+
     private int time = 90;
     public int patientCount;
 
     public bool paused;
+
+    char newButton = 'A';
 
     private int _score;
     public int score
@@ -59,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         Application.targetFrameRate = 60;
+        RemoveButtonPrompt();
     }
     private void Update()
     {
@@ -70,6 +78,13 @@ public class GameManager : MonoBehaviour
                 timeLeft = 0;
                 GameOver();
             }
+            if (Input.GetKeyDown(KeyCode.Space) && tool.activeTooth)
+                inputText.text = "[" + newButton.ToString() + "]";
+            else if (Input.GetKeyDown(KeyCode.Space))
+                inputText.text = null;
+            if (Input.GetKeyUp(KeyCode.Space)&!tool.activeTooth)
+                inputText.text = "[SPACE]";
+
         }
     }
     public void GameOver()
@@ -85,33 +100,48 @@ public class GameManager : MonoBehaviour
         gameOverCanvas.SetActive(true);
         pauseMenuCanvas.SetActive(false);
     }
-
+    
     public void SetNewButtonPrompt()
     {
-        if (!buttonPrompt.activeSelf)
-            buttonPrompt.SetActive(true);
+        //if (!buttonPrompt.activeSelf)
+          //  buttonPrompt.SetActive(true);
         //add anim here
-
-        char newButton;
-        if (Random.Range(0, 2) == 0)
+        if(Input.GetKey(KeyCode.Space))
         {
-            newButton = 'D';
-            tool.nextInputButton = hitRightBtn;
-        }
-        else
-        {
-            newButton = 'A';
-            tool.nextInputButton = hitLeftBtn;
+            switch (Random.Range(0,4))
+            {
+                case 0:
+                    newButton = 'A';
+                    tool.nextInputButton = hitLeftBtn;
+                    break;
+                case 1:
+                    newButton = 'S';
+                    tool.nextInputButton = hitDownBtn;
+                    break;
+                case 2:
+                    newButton = 'D';
+                    tool.nextInputButton = hitRightBtn;
+                    break;
+                case 3:
+                    newButton = 'W';
+                    tool.nextInputButton = hitUpBtn;
+                    break;
+            }
+           
+            inputText.text = "["+newButton.ToString()+"]";
+
         }
 
-        inputText.text = newButton.ToString();
+
 
     }
     public void RemoveButtonPrompt()
     {
-        buttonPrompt.SetActive(false); //anim here
-
-        inputText.text = null;
+        //buttonPrompt.SetActive(false); //anim here
+        if (!Input.GetKey(KeyCode.Space))
+            inputText.text = "[SPACE]";
+        else
+            inputText.text = "";
         tool.activeTooth = null;
     }
     public void NextPatient()
@@ -121,8 +151,16 @@ public class GameManager : MonoBehaviour
         score += 10;
         timeLeft = time-5;
         time -= 5;
+        //clear blood
+        int i = blood.Count;
+        for (int j = 0;  j < i;  j++)
+        {
+            var bloodParticle = blood[j];
+            blood.Remove(blood[j]);
+            Destroy(bloodParticle.gameObject);
+        }
+
         //anims 
-        //spawn new
         //patient.transform.position out of screen and move in
         patient.GetComponentInChildren<MouthManager>().Invoke("Start",1f);
         mouthManager.patientAnim.SetTrigger("Exit");

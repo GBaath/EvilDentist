@@ -21,7 +21,7 @@ public class Tooth : MonoBehaviour
                 GameManager.instance.RemoveButtonPrompt();
                 transform.parent.TryGetComponent<MouthManager>(out MouthManager mouth);
                 mouth.RemoveTooth(this);
-                _health = 5;
+                _health = Random.Range(2,6);
                 gameObject.SetActive(false);
                 GameManager.instance.score+=2;
             }
@@ -33,8 +33,9 @@ public class Tooth : MonoBehaviour
 
 
 
-    private void Start()
+    public void Start()
     {
+        _health = Random.Range(3, 7);
         sprite = GetComponent<SpriteRenderer>();
         sprite.color = new Color(0.9f, 0.9f, 0.9f);
     }
