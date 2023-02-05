@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public DentistTool tool;
     public MouthManager mouthManager;
     public SoundPlayer soundPlayer;
-    public Animator officeAnim;
+    public Animator officeAnim,patientEyesAnim;
 
     public GameObject gameOverCanvas;
     public GameObject pauseMenuCanvas;
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public bool paused;
     public bool timer = false;
+
+    public bool patientHurt = false;
 
     char newButton = 'A';
 
@@ -163,20 +165,31 @@ public class GameManager : MonoBehaviour
         //clear blood
         int i = blood.Count;
 
-        for (int j = 0;  j < i;  j++)
+        foreach (var item in blood)
         {
-            var bloodParticle = blood[j];
-            blood.Remove(blood[j]);
-            Destroy(bloodParticle.gameObject,3f);
+            Destroy(item,3.5f);
         }
+        blood.Clear();
+        //for (int j = 0;  j < i;  j++)
+        //{
+        //    var bloodParticle = blood[j];
+        //    Destroy(bloodParticle.gameObject,3.5f);
+        //}
 
         //anims 
         //patient.transform.position out of screen and move in
-        patient.GetComponentInChildren<MouthManager>().Invoke("Start",4f);
+        patient.GetComponentInChildren<MouthManager>().Invoke("Start",3.5f);
         //mouthManager.patientAnim.SetTrigger("Exit");
         officeAnim.SetTrigger("Exit");
         timer = false;
 
+        tool.transform.position = new Vector3(0, -15, 0);
+        foreach (var comp in tool.GetComponentsInChildren<MouseFollow>())
+        {
+            comp.enabled = false;
+        }
+        patientEyesAnim.SetTrigger("Down");
+        patientHurt = false;
     }
 
 }

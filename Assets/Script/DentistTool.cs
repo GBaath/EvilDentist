@@ -8,6 +8,8 @@ public class DentistTool : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameObject bloodObject;
 
+    public bool onFace;
+
 
     private GameManager gm;
 
@@ -62,13 +64,21 @@ public class DentistTool : MonoBehaviour
     {
 
         //TODO only if on acceptable area
-        var blood = Instantiate(bloodObject,transform.position,Quaternion.identity);
-        blood.transform.parent = gm.patient.transform;
-        gm.blood.Add(blood);
-        blood.transform.eulerAngles = new Vector3(Random.Range(-180f, 0),90,90);
-        gm.score--;
-        gm.timeLeft--;
-        //gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.gore,.2f);
+        if (onFace)
+        {
+            if (!gm.patientHurt)
+            {
+                gm.patientHurt = true;
+                gm.patientEyesAnim.SetTrigger("Up");
+            }
+            var blood = Instantiate(bloodObject,transform.position,Quaternion.identity);
+            blood.transform.parent = gm.patient.transform;
+            gm.blood.Add(blood);
+            blood.transform.eulerAngles = new Vector3(Random.Range(-180f, 0),90,90);
+            gm.score--;
+            gm.timeLeft--;
+            //gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.gore,.2f);
+        }
 
     }
 }
