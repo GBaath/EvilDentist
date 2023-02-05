@@ -14,6 +14,11 @@ public class PostProcessCode : MonoBehaviour
 
 
     bool flickered;
+    bool vignToggle;
+
+
+    Vignette vignette;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,11 @@ public class PostProcessCode : MonoBehaviour
         colorAdjustments = tmp;
         defaultcolor = colorAdjustments.colorFilter.value;
         Invoke(nameof(LightFlicker),0);
+
+
+        Vignette tmp2;
+        volume.profile.TryGet<Vignette>(out tmp2);
+        vignette = tmp2;
     }
 
     // Update is called once per frame
@@ -42,5 +52,17 @@ public class PostProcessCode : MonoBehaviour
             flickered = false;
         }
         Invoke(nameof(LightFlicker),Random.Range(flickerRateMin,flickerRateMax));
+    }
+    public void ToggleVinginette()
+    {
+        vignToggle = !vignToggle;
+        if (vignToggle)
+        {
+            vignette.smoothness.value = 1;
+        }
+        else
+        {
+            vignette.smoothness.value = .2f;
+        }
     }
 }

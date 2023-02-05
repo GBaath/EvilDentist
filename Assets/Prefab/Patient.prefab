@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5625893332921587786
 Transform:
   m_ObjectHideFlags: 0
@@ -2147,6 +2147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toothParticles: {fileID: 1321767211245518446}
   teeth: []
+  hairBase: {fileID: 4634319649436034587}
   patientAnim: {fileID: 8060116175671700355}
 --- !u!1 &2352204565013175090
 GameObject:
@@ -2961,7 +2962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6828353693724478213
 Transform:
   m_ObjectHideFlags: 0
@@ -3144,7 +3145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5299772402197180357
 Transform:
   m_ObjectHideFlags: 0
@@ -3403,7 +3404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6220942388379102857
 Transform:
   m_ObjectHideFlags: 0

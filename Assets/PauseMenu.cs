@@ -23,10 +23,12 @@ public class PauseMenu : MonoBehaviour
     public void TogglePause()
     {
         GameManager.instance.paused = !GameManager.instance.paused;
+        Cursor.visible = !GameManager.instance.paused;
         pausemenu.SetActive(!pausemenu.activeSelf);
     }
     public void ToggleNotePad(bool enabled)
     {
+        Cursor.visible = enabled;
         if (enabled)
             notePad.GetComponent<Animator>().SetTrigger("Enter");
         else

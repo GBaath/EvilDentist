@@ -7,11 +7,25 @@ public class MouthManager : MonoBehaviour
     [SerializeField] public GameObject toothParticles;
     [SerializeField] private List<Tooth> teeth;
     private List<Tooth> teethToRemove = new List<Tooth>();
+    [SerializeField] Transform hairBase;
 
     public Animator patientAnim;
 
     public void Start()
     {
+        for (int i = 0; i < hairBase.childCount; i++)
+        {
+            hairBase.GetChild(i).gameObject.SetActive(false);
+        }
+        for (int i=0; i < hairBase.childCount; i++)
+        {
+            if (Random.Range(0, hairBase.childCount)==0)
+            {
+                hairBase.GetChild(i).gameObject.SetActive(true);
+                break;
+            }
+        }
+
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(true);

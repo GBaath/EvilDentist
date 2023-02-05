@@ -16,6 +16,7 @@ public class DentistTool : MonoBehaviour
     private void Start()
     {
         gm = GameManager.instance;
+        Cursor.visible = false;
     }
 
 
@@ -77,7 +78,8 @@ public class DentistTool : MonoBehaviour
             blood.transform.eulerAngles = new Vector3(Random.Range(-180f, 0),90,90);
             gm.score--;
             gm.timeLeft--;
-            //gm.soundPlayer.PlayAudioDelayed(gm.soundPlayer.gore,.2f);
+            gm.soundPlayer.PlayRandomAudio(gm.soundPlayer.hurtsounds);
+            gm.patientanim.SetTrigger("Shake");
         }
 
     }

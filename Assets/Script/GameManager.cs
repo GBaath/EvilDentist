@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public DentistTool tool;
     public MouthManager mouthManager;
     public SoundPlayer soundPlayer;
-    public Animator officeAnim,patientEyesAnim;
+    public Animator officeAnim,patientEyesAnim,patientanim;
 
     public GameObject gameOverCanvas;
     public GameObject pauseMenuCanvas;
