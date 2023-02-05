@@ -5,6 +5,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pausemenu;
+    [SerializeField] GameObject notePad;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +24,12 @@ public class PauseMenu : MonoBehaviour
     {
         GameManager.instance.paused = !GameManager.instance.paused;
         pausemenu.SetActive(!pausemenu.activeSelf);
+    }
+    public void ToggleNotePad(bool enabled)
+    {
+        if (enabled)
+            notePad.GetComponent<Animator>().SetTrigger("Enter");
+        else
+            notePad.GetComponent<Animator>().SetTrigger("Exit");
     }
 }

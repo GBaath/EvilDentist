@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public DentistTool tool;
     public MouthManager mouthManager;
     public SoundPlayer soundPlayer;
+    public Animator officeAnim;
 
     public GameObject gameOverCanvas;
     public GameObject pauseMenuCanvas;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public int patientCount;
 
     public bool paused;
+    public bool timer = false;
 
     char newButton = 'A';
 
@@ -70,9 +72,12 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+            NextPatient();
         if (!paused)
         {
-            timeLeft -= Time.deltaTime;
+            if(timer)
+                timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
             {
                 timeLeft = 0;
@@ -86,6 +91,10 @@ public class GameManager : MonoBehaviour
                 inputText.text = "[SPACE]";
 
         }
+    }
+    public void TimerActive(bool active)
+    {
+        timer = active;
     }
     public void GameOver()
     {
@@ -153,17 +162,20 @@ public class GameManager : MonoBehaviour
         time -= 5;
         //clear blood
         int i = blood.Count;
+
         for (int j = 0;  j < i;  j++)
         {
             var bloodParticle = blood[j];
             blood.Remove(blood[j]);
-            Destroy(bloodParticle.gameObject);
+            Destroy(bloodParticle.gameObject,3f);
         }
 
         //anims 
         //patient.transform.position out of screen and move in
-        patient.GetComponentInChildren<MouthManager>().Invoke("Start",1f);
-        mouthManager.patientAnim.SetTrigger("Exit");
+        patient.GetComponentInChildren<MouthManager>().Invoke("Start",4f);
+        //mouthManager.patientAnim.SetTrigger("Exit");
+        officeAnim.SetTrigger("Exit");
+        timer = false;
 
     }
 
