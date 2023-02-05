@@ -175,7 +175,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: edced37f5a0388248b0172282dfdbd56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -475,6 +475,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 519420032}
     m_Modifications:
+    - target: {fileID: 481378588286321047, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517944625134255956, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.15
@@ -567,10 +571,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2867518212354205568, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5849056
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867518212354205568, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5849056
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867518212354205568, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5849056
+      objectReference: {fileID: 0}
     - target: {fileID: 2900647316413822697, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0277d939f6a818a41a1a54766be075a0, type: 2}
+    - target: {fileID: 3495245503680839894, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3723749448531514926, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
       propertyPath: followRef
       value: 
@@ -578,6 +598,10 @@ PrefabInstance:
     - target: {fileID: 3723749448531514926, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
       propertyPath: maxDistance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870853117447441854, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3898594621943115793, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
       propertyPath: followRef
@@ -591,6 +615,22 @@ PrefabInstance:
       propertyPath: toolscript
       value: 
       objectReference: {fileID: 652732735}
+    - target: {fileID: 6173728569859416191, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195256028817493776, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8207547
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195256028817493776, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8207547
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195256028817493776, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8207547
+      objectReference: {fileID: 0}
     - target: {fileID: 6641793983073390160, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
       propertyPath: followRef
       value: 
