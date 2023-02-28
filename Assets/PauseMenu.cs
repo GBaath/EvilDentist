@@ -22,8 +22,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void TogglePause()
     {
+        Cursor.visible = !Cursor.visible;
         GameManager.instance.paused = !GameManager.instance.paused;
-        Cursor.visible = !GameManager.instance.paused;
         pausemenu.SetActive(!pausemenu.activeSelf);
     }
     public void ToggleNotePad(bool enabled)

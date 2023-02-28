@@ -175,7 +175,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: edced37f5a0388248b0172282dfdbd56, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2042,6 +2042,7 @@ MonoBehaviour:
   inputText: {fileID: 248630732}
   scoreText: {fileID: 1385195895}
   timeText: {fileID: 789841506}
+  patientcount: {fileID: 1278319768}
   tool: {fileID: 652732735}
   mouthManager: {fileID: 1641976044}
   soundPlayer: {fileID: 440508526}
@@ -2215,6 +2216,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2900647316413822697, guid: 48a69dd48421b7b4f8ffef03d96784f7, type: 3}
   m_PrefabInstance: {fileID: 358434247}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1278319768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2881687494866610624, guid: 52a61797cfe622d4997bb977a772ddbc, type: 3}
+  m_PrefabInstance: {fileID: 1585185826606710677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1299112622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8334885383141861291, guid: 52a61797cfe622d4997bb977a772ddbc, type: 3}

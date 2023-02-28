@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject patient;
     public GameObject buttonPrompt;
-    public TextMeshProUGUI inputText,scoreText,timeText;
+    public TextMeshProUGUI inputText,scoreText,timeText,patientcount;
     public DentistTool tool;
     public MouthManager mouthManager;
     public SoundPlayer soundPlayer;
@@ -74,8 +74,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-            NextPatient();
+        //if (Input.GetKeyDown(KeyCode.N))
+        //    NextPatient();
         if (!paused)
         {
             if(timer)
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
 
         gameOverCanvas.SetActive(true);
         pauseMenuCanvas.SetActive(false);
+        patientcount.text = patientCount.ToString();
     }
     
     public void SetNewButtonPrompt()

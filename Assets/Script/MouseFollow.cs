@@ -12,17 +12,22 @@ public class MouseFollow : MonoBehaviour
     [SerializeField]float swayScale = 1;
     float ogSwayScale;
 
+    float ogMoveSens;
+
     private void Start()
     {
         ogSwayScale = swayScale;
+        ogMoveSens = moveSens;
     }
 
     void Update()
     {
         if (!GameManager.instance.paused)
         {
-            if (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyUp(KeyCode.Space))
-                TogglePreciscionMove();
+            if (Input.GetKey(KeyCode.Space))
+                EnablePreciscionMove(true);
+            else
+                EnablePreciscionMove(false);
 
             if ((Input.mousePosition).x > Screen.width / 2)
             {
@@ -39,17 +44,17 @@ public class MouseFollow : MonoBehaviour
         }
 
     }
-    public void TogglePreciscionMove()
+    public void EnablePreciscionMove(bool enable)
     {
-        if (swayScale == 1)
+        if (!enable)
         {
             swayScale = ogSwayScale;
-            moveSens *= 10;
+            moveSens = ogMoveSens;
         }
         else
         {
             swayScale = 1;
-            moveSens /= 10;
+            moveSens = ogMoveSens /10;
         }
     }
 }
